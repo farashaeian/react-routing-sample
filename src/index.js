@@ -21,9 +21,27 @@ root.render(
         {/* nested routing ;  */}
         <Route path='/' element={<App />} >
           <Route path='/about-us' element={<About />} />
-          <Route path='/books' element={<Books />} />
-          <Route path='/books/:bookId' element={<Book />} />
+          <Route path='/books' element={<Books />} >
+            <Route index element={
+              <main style={{ padding: "1rem" }}>
+                <p>
+                  یک کتاب انتخاب کنید.
+                </p>
+              </main>
+            } />
+            <Route path=':bookId' element={<Book />} />
+          </Route>
+          {/* not nested route: */}
+          {/* <Route path='/books/:bookId' element={<Book />} /> */}
+
+          {/* Adding Not Found Page ;   */}
+          <Route path='*' element={
+            <main style={{ padding: "1rem" }}>
+              <p>Not Found</p>
+            </main>
+          } />
         </Route>
+
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
